@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   backgroundStyle: {
     marginTop: 15,
     backgroundColor: "#ffffff",
-    height: 100,
+    height: 50,
     width: 200,
     borderRadius: 50,
   },
