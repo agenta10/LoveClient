@@ -21,7 +21,7 @@ const LoginScreen = (props) => {
 
       <MyButton
         buttonText="Login"
-        onPress={() => props.navigation.navigate("Login")}
+        onPress={() => props.navigation.navigate("Feed")}
       />
     </View>
   );
