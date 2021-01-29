@@ -8,24 +8,28 @@ const image2 = require(img + "mountain.jpg");
 const image3 = require(img + "beach.jpg");
 const image4 = require(img + "forest.jpg");
 
-const imgli=[image1,image2,image3,image4];
-const n=imgli.length;
+const imgList = [image1, image2, image3, image4];
+const n = imgList.length;
 
 const DetailedProfileScreen = () => {
-  const [imageInd, setImageInd] = useState(0);
-  const image=imgli[imageInd];
+  const [imageIndex, setImageInd] = useState(0);
+  const image = imgList[imageIndex];
   return (
     <View>
       <View style={styles.cardStyle}>
-        <DetailedProfileCard 
-          backgroundImage={image} 
-          onLeftPress={()=>{setImageInd((imageInd+1)%n);}} 
-          onRightPress={()=>{setImageInd((imageInd-1+n)%n);}}
+        <DetailedProfileCard
+          backgroundImage={image}
+          onLeftPress={() => {
+            setImageInd((imageIndex + 1) % n);
+          }}
+          onRightPress={() => {
+            setImageInd((imageIndex - 1 + n) % n);
+          }}
         />
       </View>
       <View style={{ marginLeft: "13%", bottom: "5%" }}>
-        <Text style={{fontWeight: 'bold' }}>Deepti Jha 23</Text>
-        <Text style={{fontFamily: 'sans-serif-medium' }}>About:</Text>
+        <Text style={{ fontWeight: "bold" }}>Deepti Jha 23</Text>
+        <Text style={{ fontFamily: "sans-serif-medium" }}>About:</Text>
         <Text>
           I live in the sky in the blessing of the gods. only for hookups, love
           is life.

@@ -7,6 +7,8 @@ import FeedScreen from "./src/screens/FeedScreen";
 import DetailedProfileScreen from "./src/screens/DetailedProfileScreen";
 import InitiateProfileScreen from "./src/screens/InitiateProfileScreen";
 import AddImagesScreen from "./src/screens/AddImagesScreen";
+import UserProfileScreen from "./src/screens/UserProfileScreen";
+import ChangePhotosScreen from "./src/screens/ChangePhotosScreen";
 const navigator = createStackNavigator(
   {
     Register: RegisterScreen,
@@ -16,9 +18,11 @@ const navigator = createStackNavigator(
     DetailedProfile: DetailedProfileScreen,
     InitiateProfile: InitiateProfileScreen,
     AddImages: AddImagesScreen,
+    UserProfile: UserProfileScreen,
+    ChangePhotos: ChangePhotosScreen,
   },
   {
-    initialRouteName: "InitiateProfile",
+    initialRouteName: "UserProfile",
     defaultNavigationOptions: {
       title: "LoveApp",
     },
