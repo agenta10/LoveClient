@@ -5,6 +5,8 @@ import LoginScreen from "./src/screens/LoginScreen";
 import OtpScreen from "./src/screens/OtpScreen";
 import FeedScreen from "./src/screens/FeedScreen";
 import DetailedProfileScreen from "./src/screens/DetailedProfileScreen";
+import InitiateProfileScreen from "./src/screens/InitiateProfileScreen";
+import AddImagesScreen from "./src/screens/AddImagesScreen";
 const navigator = createStackNavigator(
   {
     Register: RegisterScreen,
@@ -12,9 +14,11 @@ const navigator = createStackNavigator(
     Otp: OtpScreen,
     Feed: FeedScreen,
     DetailedProfile: DetailedProfileScreen,
+    InitiateProfile: InitiateProfileScreen,
+    AddImages: AddImagesScreen,
   },
   {
-    initialRouteName: "Register",
+    initialRouteName: "InitiateProfile",
     defaultNavigationOptions: {
       title: "LoveApp",
     },

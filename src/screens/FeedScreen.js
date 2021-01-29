@@ -20,27 +20,36 @@ const imageSources = [
   [image3, image4],
   [image1, image2],
   [image3, image4],
-  [image3, image4],
   [image1, image2],
   [image3, image4],
 ];
+const li = [];
+
 const FeedScreen = (props) => {
+  for (let index = 0; index < imageSources.length; index++) {
+    const element = imageSources[index];
+    li.push(
+      <View style={styles.imageContainer}>
+        <FeedCard
+          title="Forest"
+          backgroundImage={element[0]}
+          navigate={() => {
+            props.navigation.navigate("DetailedProfile");
+          }}
+        />
+        <FeedCard
+          title="Beach"
+          backgroundImage={element[1]}
+          navigate={() => props.navigation.navigate("DetailedProfile")}
+        />
+      </View>
+    );
+  }
   return (
     <ScrollView style={styles.container}>
       <NearbyButton buttonText="Go to Nearby" />
-      {imageSources.map((prop, key) => {
-        return (
-          <View style={styles.imageContainer}>
-            <FeedCard title="Forest" backgroundImage={prop[0]} key={2 * key} navigate={()=>{props.navigation.navigate("DetailedProfile")}}/>
-            <FeedCard
-              title="Beach"
-              backgroundImage={prop[1]}
-              key={2 * key + 1}
-              navigate={() => props.navigation.navigate("DetailedProfile")}
-            />
-          </View>
-        );
-      })}
+
+      {li}
     </ScrollView>
   );
 };
