@@ -14,7 +14,7 @@ const navigator = createStackNavigator(
     DetailedProfile: DetailedProfileScreen,
   },
   {
-    initialRouteName: "DetailedProfile",
+    initialRouteName: "Register",
     defaultNavigationOptions: {
       title: "LoveApp",
     },

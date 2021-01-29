@@ -10,20 +10,22 @@ const DetailedProfileCard = (props) => {
         source={props.backgroundImage}
       >
         <View style={styles.arrowStyle}>
-          <View style={{ marginLeft: "5%" }}>
+          <View >
             <Icon.Button
               name="angle-left"
               backgroundColor="transparent"
               color="orange"
               size={40}
+              onPress={props.onLeftPress}
             />
           </View>
-          <View style={{ marginLeft: "65%" }}>
+          <View style={{ marginLeft: "75%" }}>
             <Icon.Button
               name="angle-right"
               backgroundColor="transparent"
               color="orange"
               size={40}
+              onPress={props.onRightPress}
             />
           </View>
         </View>

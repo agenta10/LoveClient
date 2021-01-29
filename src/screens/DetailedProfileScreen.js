@@ -4,17 +4,28 @@ import DetailedProfileCard from "../components/DetailedProfileCard";
 
 const img = "../../assets/";
 const image1 = require(img + "road.jpg");
+const image2 = require(img + "mountain.jpg");
+const image3 = require(img + "beach.jpg");
+const image4 = require(img + "forest.jpg");
+
+const imgli=[image1,image2,image3,image4];
+const n=imgli.length;
 
 const DetailedProfileScreen = () => {
-  const [image, setImage] = useState(image1);
+  const [imageInd, setImageInd] = useState(0);
+  const image=imgli[imageInd];
   return (
     <View>
       <View style={styles.cardStyle}>
-        <DetailedProfileCard backgroundImage={image1} />
+        <DetailedProfileCard 
+          backgroundImage={image} 
+          onLeftPress={()=>{setImageInd((imageInd+1)%n);}} 
+          onRightPress={()=>{setImageInd((imageInd-1+n)%n);}}
+        />
       </View>
-      <View style={{ marginLeft: "15%", bottom: "5%" }}>
-        <Text>Deepti Jha 23</Text>
-        <Text>About:</Text>
+      <View style={{ marginLeft: "13%", bottom: "5%" }}>
+        <Text style={{fontWeight: 'bold' }}>Deepti Jha 23</Text>
+        <Text style={{fontFamily: 'sans-serif-medium' }}>About:</Text>
         <Text>
           I live in the sky in the blessing of the gods. only for hookups, love
           is life.
@@ -22,9 +33,9 @@ const DetailedProfileScreen = () => {
       </View>
 
       <View style={styles.hobbyStyle}>
-        <Text style={styles.hobbyCardStyle}>Hello</Text>
-        <Text style={styles.hobbyCardStyle}>Hello</Text>
-        <Text style={styles.hobbyCardStyle}>Hello</Text>
+        <Text style={styles.hobbyCardStyle}>Swimming</Text>
+        <Text style={styles.hobbyCardStyle}>Singing</Text>
+        <Text style={styles.hobbyCardStyle}>Dancing</Text>
       </View>
     </View>
   );

@@ -1,24 +1,27 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/Octicons";
 
 const FeedCard = (props) => {
   return (
     <View style={styles.contentStyle}>
-      <ImageBackground
-        style={styles.backgroundImageStyle}
-        source={props.backgroundImage}
-      >
-        <View style={styles.nameContainer}>
-          <Text style={styles.textStyle}>{props.title}</Text>
-          <Text style={styles.textStyle}>23</Text>
-          <Icon.Button
-            name="primitive-dot"
-            backgroundColor="grey"
-            color="green"
-          />
-        </View>
-      </ImageBackground>
+      <TouchableOpacity  onPress={props.navigate}>
+        <ImageBackground
+          style={styles.backgroundImageStyle}
+          source={props.backgroundImage}
+        >
+          <View style={styles.nameContainer}>
+            <Text style={styles.textStyle}>{props.title}</Text>
+            <Text style={styles.textStyle}>23</Text>
+            <Icon.Button
+              name="primitive-dot"
+              backgroundColor="grey"
+              color="green"
+            />
+          </View>
+        </ImageBackground>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -38,7 +41,8 @@ const styles = StyleSheet.create({
   },
   nameContainer: {
     borderRadius: 30,
-    marginTop: "60%",
+    marginTop: "80%",
+    width: "100%",
     flexDirection: "row",
     backgroundColor: "grey",
   },
