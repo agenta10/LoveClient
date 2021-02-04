@@ -9,52 +9,60 @@ export const UserProvider = ({ children }) => {
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
-  const [loggedIn,setLoggedIn] = useState(0);
-  
-  const signUp = ({name,phone,gender,password, nav}) => {
+  const [loggedIn, setLoggedIn] = useState(0);
+
+  const signUp = ({ name, phone, gender, password, nav }) => {
     setName(name);
     setGender(gender);
     setPassword(password);
     setPhone(phone);
     let signUpFunc = async () => {
-      const response = await serverApi.post('./signup', {phone,name,gender,password});
+      const response = await serverApi.post("./signup", {
+        phone,
+        name,
+        gender,
+        password,
+      });
       console.log(response.data);
       nav.navigate("Otp");
     };
     signUpFunc()
-    .then((result)=>{console.log(result)})
-    .catch((error) => {
-      console.log("promise Error", error);
-    });
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log("promise Error", error);
+      });
   };
-  
-  const verifyOtp = ({otp,nav})=>{
-    let verifyOtpFunc = async () =>{
-      const response = await serverApi.post('./otp',{otp,phone});
+
+  const verifyOtp = ({ otp, nav }) => {
+    let verifyOtpFunc = async () => {
+      const response = await serverApi.post("./otp", { otp, phone });
       console.log(response.data);
-      nav.navigate("signIn");
+      nav.navigate("Login");
     };
     verifyOtpFunc()
-    .then((result)=>{})
-    .catch((error) => {
-      console.log("promise Error", error);
-    });
-  }
+      .then((result) => {})
+      .catch((error) => {
+        console.log("promise Error", error);
+      });
+  };
 
-  const signIn = ({phone,password, nav}) => {
+  const signIn = ({ phone, password, nav }) => {
     let signInFunc = async () => {
-      const response = await serverApi.post('./signIn', {phone,password});
+      const response = await serverApi.post("./signIn", { phone, password });
       setToken(response.data.token);
       console.log(response.data.token);
       nav.navigate("Feed");
     };
     signInFunc()
-    .then((result)=>{console.log(result)})
-    .catch((error) => {
-      console.log("promise Error", error);
-    });
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log("promise Error", error);
+      });
   };
-
 
   const getUserPosts = () => {
     let getfunc = async () => {
@@ -70,20 +78,22 @@ export const UserProvider = ({ children }) => {
   };
   const addUserPost = (title, content) => {
     let addfunc = async () => {
-      await jsonServer.post('./Userposts', {title,content});
+      await jsonServer.post("./Userposts", { title, content });
     };
     addfunc()
-    .then((result)=>{getUserPosts();})
-    .catch((error) => {
-      console.log("promise Error", error);
-    });
+      .then((result) => {
+        getUserPosts();
+      })
+      .catch((error) => {
+        console.log("promise Error", error);
+      });
   };
   return (
     <UserContext.Provider
       value={{
         signUp,
         verifyOtp,
-        signIn
+        signIn,
       }}
     >
       {children}

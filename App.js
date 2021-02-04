@@ -10,6 +10,7 @@ import InitiateProfileScreen from "./src/screens/InitiateProfileScreen";
 import AddImagesScreen from "./src/screens/AddImagesScreen";
 import UserProfileScreen from "./src/screens/UserProfileScreen";
 import ChangePhotosScreen from "./src/screens/ChangePhotosScreen";
+import NearbyScreen from "./src/screens/NearbyScreen";
 import { UserProvider } from "./src/context/UserContext";
 const navigator = createStackNavigator(
   {
@@ -22,9 +23,10 @@ const navigator = createStackNavigator(
     AddImages: AddImagesScreen,
     UserProfile: UserProfileScreen,
     ChangePhotos: ChangePhotosScreen,
+    Nearby: NearbyScreen,
   },
   {
-    initialRouteName: "Feed",
+    initialRouteName: "Nearby",
     defaultNavigationOptions: {
       title: "LoveApp",
     },
@@ -40,4 +42,3 @@ export default () => {
     </UserProvider>
   );
 };
-

@@ -4,18 +4,17 @@ import ProfileCircle from "../components/ProfileCircle";
 import InputBox from "../components/InputBox";
 import Icon from "react-native-vector-icons/AntDesign";
 import Icon1 from "react-native-vector-icons/Ionicons";
-import Slider from "@react-native-community/slider";
+
 const img = "../../assets/";
 const image1 = require(img + "beach.jpg");
-const myVal = 50;
+
 const InitiateProfileScreen = (props) => {
   const [bio, setBio] = useState("Whatever the bio");
   const [hobby1, setHobby1] = useState("Swimming");
   const [hobby2, setHobby2] = useState("Dancing");
   const [hobby3, setHobby3] = useState("Painting");
   const [name, setName] = useState("Malu");
-  const [sliderValue, setSliderValue] = useState(0);
-  const left = (sliderValue * (300 - 60)) / 100 - 15;
+
   return (
     <View>
       <View style={styles.containerStyle}>
@@ -41,17 +40,7 @@ const InitiateProfileScreen = (props) => {
           onTextChange={setBio}
         />
       </View>
-      <View>
-        <Text>Select Distance</Text>
-        <Text style={{ width: 70, textAlign: "center", left: left }}>
-          {Math.floor(sliderValue)}
-        </Text>
-        <Slider
-          maximumValue={100}
-          value={sliderValue}
-          onValueChange={(sliderValue) => setSliderValue(sliderValue)}
-        />
-      </View>
+
       <View style={styles.hobbyStyle}>
         <Text>Enter your hobbies</Text>
         <InputBox placeholder={hobby1} text={hobby1} onTextChange={setHobby1} />

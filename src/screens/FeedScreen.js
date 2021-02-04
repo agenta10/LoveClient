@@ -53,8 +53,7 @@ const FeedScreen = (props) => {
         keyExtractor={(item) => String(Math.floor(Math.random() * 1000000))}
         //extraData={selectedId}
       />
-      {/* {li} */}
-      </View>
+    </View>
   );
 };
 
