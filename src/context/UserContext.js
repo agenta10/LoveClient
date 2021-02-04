@@ -50,7 +50,7 @@ export const UserProvider = ({ children }) => {
 
   const signIn = ({ phone, password, nav }) => {
     let signInFunc = async () => {
-      const response = await serverApi.post("./signIn", { phone, password });
+      const response = await serverApi.post("./signin", { phone, password });
       setToken(response.data.token);
       console.log(response.data.token);
       nav.navigate("Feed");
@@ -65,11 +65,11 @@ export const UserProvider = ({ children }) => {
   };
 
   const getUserPosts = () => {
-    let getfunc = async () => {
-      const response = await jsonServer.get("/Userposts");
+    let getFunc = async () => {
+      const response = await jsonServer.get("/userposts");
       setUserPosts(response.data);
     };
-    getfunc()
+    getFunc()
       .then((result) => {})
       .catch((error) => {
         console.log("promise Error", error);
@@ -77,10 +77,10 @@ export const UserProvider = ({ children }) => {
       .finally(() => {});
   };
   const addUserPost = (title, content) => {
-    let addfunc = async () => {
-      await jsonServer.post("./Userposts", { title, content });
+    let addFunc = async () => {
+      await jsonServer.post("./userposts", { title, content });
     };
-    addfunc()
+    addFunc()
       .then((result) => {
         getUserPosts();
       })
