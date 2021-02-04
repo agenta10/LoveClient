@@ -24,7 +24,7 @@ const navigator = createStackNavigator(
     ChangePhotos: ChangePhotosScreen,
   },
   {
-    initialRouteName: "Register",
+    initialRouteName: "Feed",
     defaultNavigationOptions: {
       title: "LoveApp",
     },

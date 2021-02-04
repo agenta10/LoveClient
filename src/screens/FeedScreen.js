@@ -6,6 +6,7 @@ import {
   Image,
   ImageBackground,
   ScrollView,
+  FlatList,
 } from "react-native";
 import FeedCard from "../components/FeedCard";
 import NearbyButton from "../components/NearbyButton";
@@ -26,31 +27,34 @@ const imageSources = [
 const li = [];
 
 const FeedScreen = (props) => {
-  for (let index = 0; index < imageSources.length; index++) {
-    const element = imageSources[index];
-    li.push(
-      <View style={styles.imageContainer}>
-        <FeedCard
-          title="Forest"
-          backgroundImage={element[0]}
-          navigate={() => {
-            props.navigation.navigate("DetailedProfile");
-          }}
-        />
-        <FeedCard
-          title="Beach"
-          backgroundImage={element[1]}
-          navigate={() => props.navigation.navigate("DetailedProfile")}
-        />
-      </View>
-    );
-  }
   return (
-    <ScrollView style={styles.container}>
+    <View>
       <NearbyButton buttonText="Go to Nearby" />
-
-      {li}
-    </ScrollView>
+      <FlatList
+        data={imageSources}
+        renderItem={({ item }) => {
+          return (
+            <View style={styles.imageContainer}>
+              <FeedCard
+                title="Forest"
+                backgroundImage={item[0]}
+                navigate={() => {
+                  props.navigation.navigate("DetailedProfile");
+                }}
+              />
+              <FeedCard
+                title="Beach"
+                backgroundImage={item[1]}
+                navigate={() => props.navigation.navigate("DetailedProfile")}
+              />
+            </View>
+          );
+        }}
+        keyExtractor={(item) => String(Math.floor(Math.random() * 1000000))}
+        //extraData={selectedId}
+      />
+      {/* {li} */}
+      </View>
   );
 };
 
