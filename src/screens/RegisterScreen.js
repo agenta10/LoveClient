@@ -1,23 +1,26 @@
-import React, { useState } from "react";
-
+import React, { useState, useContext } from "react";
+import serverApi from "../api/server";
 import { View, Text, StyleSheet } from "react-native";
 import { RadioButton } from "react-native-paper";
 import MyButton from "../components/MyButton";
 import InputBox from "../components/InputBox";
-
+import UserContext from "../context/UserContext";
 const RegisterScreen = (props) => {
-  const [fullName, setFullName] = useState("");
+  const [name, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [value, setValue] = React.useState("first");
+  const [gender, setGender] = React.useState("");
+
+  const { signUp } = useContext(UserContext);
+
   return (
     <View style={styles.containerStyle}>
       <Text>Welcome Onboard</Text>
       <Text>Designed for love</Text>
 
       <InputBox
-        text={fullName}
+        text={name}
         onTextChange={setFullName}
         placeholder="Full Name"
       />
@@ -32,23 +35,14 @@ const RegisterScreen = (props) => {
         onTextChange={setConfirmPassword}
         placeholder="Confirm password"
       />
-      <Text>Choose your gender</Text>
-      <RadioButton.Group
-        onValueChange={(newValue) => setValue(newValue)}
-        value={value}
-      >
-        <View>
-          <Text>Male</Text>
-          <RadioButton value="first" />
-        </View>
-        <View>
-          <Text>Female</Text>
-          <RadioButton value="second" />
-        </View>
-      </RadioButton.Group>
+      <InputBox text={gender} onTextChange={setGender} placeholder="Gender" />
+
       <MyButton
         buttonText="Register"
-        onPress={() => props.navigation.navigate("Otp")}
+        onPress={() => {
+          signUp({ phone, name, password, gender });
+          props.navigation.navigate("Otp");
+        }}
       />
     </View>
   );

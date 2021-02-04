@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import MyButton from "../components/MyButton";
 import InputBox from "../components/InputBox";
 
-const OtpScreen = (props) => {
+const OtpScreen = ({navigation}) => {
   const [otp, setOtp] = useState("");
 
   return (
@@ -14,7 +14,15 @@ const OtpScreen = (props) => {
 
       <MyButton
         buttonText="Confirm"
-        onPress={() => props.navigation.navigate("Login")}
+        onPress={async () => {
+          try{
+          const response = await serverApi.post('/otp',{otp,phone : '+916205252784'}); 
+          console.log(response);
+          }catch(err){
+            console.log(err);
+          }
+          props.navigation.navigate("Login");
+        }}
       />
     </View>
   );

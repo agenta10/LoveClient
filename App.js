@@ -1,3 +1,4 @@
+import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import RegisterScreen from "./src/screens/RegisterScreen";
@@ -9,6 +10,7 @@ import InitiateProfileScreen from "./src/screens/InitiateProfileScreen";
 import AddImagesScreen from "./src/screens/AddImagesScreen";
 import UserProfileScreen from "./src/screens/UserProfileScreen";
 import ChangePhotosScreen from "./src/screens/ChangePhotosScreen";
+import { UserProvider } from "./src/context/UserContext";
 const navigator = createStackNavigator(
   {
     Register: RegisterScreen,
@@ -22,11 +24,20 @@ const navigator = createStackNavigator(
     ChangePhotos: ChangePhotosScreen,
   },
   {
-    initialRouteName: "UserProfile",
+    initialRouteName: "Register",
     defaultNavigationOptions: {
       title: "LoveApp",
     },
   }
 );
 
-export default createAppContainer(navigator);
+const App = createAppContainer(navigator);
+
+export default () => {
+  return (
+    <UserProvider>
+      <App />
+    </UserProvider>
+  );
+};
+
