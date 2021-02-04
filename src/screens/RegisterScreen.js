@@ -40,8 +40,13 @@ const RegisterScreen = (props) => {
       <MyButton
         buttonText="Register"
         onPress={() => {
-          signUp({ phone, name, password, gender });
-          props.navigation.navigate("Otp");
+          signUp({ phone, name, password, gender ,nav : props.navigation });
+        }}
+      />
+      <MyButton
+        buttonText="Or Login"
+        onPress={() => {
+           props.navigation.navigate('Login');
         }}
       />
     </View>

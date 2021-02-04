@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import MyButton from "../components/MyButton";
 import InputBox from "../components/InputBox";
-
-const OtpScreen = ({navigation}) => {
+import UserContext from "../context/UserContext";
+const OtpScreen = ({ navigation }) => {
   const [otp, setOtp] = useState("");
-
+  const { verifyOtp } = useContext(UserContext);
   return (
     <View style={styles.containerStyle}>
       <Text>Enter your OTP</Text>
@@ -14,14 +14,8 @@ const OtpScreen = ({navigation}) => {
 
       <MyButton
         buttonText="Confirm"
-        onPress={async () => {
-          try{
-          const response = await serverApi.post('/otp',{otp,phone : '+916205252784'}); 
-          console.log(response);
-          }catch(err){
-            console.log(err);
-          }
-          props.navigation.navigate("Login");
+        onPress={() => {
+          verifyOtp({otp,nav:navigation});
         }}
       />
     </View>

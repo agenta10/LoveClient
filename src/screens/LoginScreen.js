@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import MyButton from "../components/MyButton";
 import InputBox from "../components/InputBox";
+import UserContext from "../context/UserContext";
 
 const LoginScreen = (props) => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+
+  const { signIn } = useContext(UserContext);
 
   return (
     <View style={styles.containerStyle}>
@@ -21,7 +24,9 @@ const LoginScreen = (props) => {
 
       <MyButton
         buttonText="Login"
-        onPress={() => props.navigation.navigate("Feed")}
+        onPress={() => {
+          signIn({phone,password,nav: props.navigation});
+        }}
       />
     </View>
   );

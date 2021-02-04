@@ -10,17 +10,16 @@ export const UserProvider = ({ children }) => {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
   const [loggedIn,setLoggedIn] = useState(0);
-  const signUp = ({name,phone,gender,password}) => {
+  
+  const signUp = ({name,phone,gender,password, nav}) => {
     setName(name);
     setGender(gender);
     setPassword(password);
     setPhone(phone);
-    console.log(name);
-    console.log(phone);
-    console.log(password);
-    console.log(gender);
     let signUpFunc = async () => {
-      await serverApi.post('./signup', {phone,name,gender,password});
+      const response = await serverApi.post('./signup', {phone,name,gender,password});
+      console.log(response.data);
+      nav.navigate("Otp");
     };
     signUpFunc()
     .then((result)=>{console.log(result)})
@@ -29,6 +28,34 @@ export const UserProvider = ({ children }) => {
     });
   };
   
+  const verifyOtp = ({otp,nav})=>{
+    let verifyOtpFunc = async () =>{
+      const response = await serverApi.post('./otp',{otp,phone});
+      console.log(response.data);
+      nav.navigate("signIn");
+    };
+    verifyOtpFunc()
+    .then((result)=>{})
+    .catch((error) => {
+      console.log("promise Error", error);
+    });
+  }
+
+  const signIn = ({phone,password, nav}) => {
+    let signInFunc = async () => {
+      const response = await serverApi.post('./signIn', {phone,password});
+      setToken(response.data.token);
+      console.log(response.data.token);
+      nav.navigate("Feed");
+    };
+    signInFunc()
+    .then((result)=>{console.log(result)})
+    .catch((error) => {
+      console.log("promise Error", error);
+    });
+  };
+
+
   const getUserPosts = () => {
     let getfunc = async () => {
       const response = await jsonServer.get("/Userposts");
@@ -54,7 +81,9 @@ export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
-        signUp
+        signUp,
+        verifyOtp,
+        signIn
       }}
     >
       {children}
